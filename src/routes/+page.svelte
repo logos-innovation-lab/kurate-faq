@@ -15,9 +15,7 @@
 		{#each data.articles as article}
 			<div>
 				<h2 class="font-bold">{article.title}</h2>
-				<p>
-					{article.summary}
-				</p>
+				<p>{article.summary}</p>
 				<a class="underline" href="/{article.slug}">Learn more</a>
 			</div>
 		{/each}
