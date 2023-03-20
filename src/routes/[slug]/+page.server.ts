@@ -1,3 +1,4 @@
+// @ts-expect-error https://github.com/sveltejs/kit/issues/1689
 import { readFile } from 'fs/promises';
 import { error } from '@sveltejs/kit';
 import matter from 'gray-matter';
