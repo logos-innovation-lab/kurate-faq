@@ -1,5 +1,6 @@
 <script>
 	/** @type {import('./$types').PageData} */
+	import Container from '$lib/components/container.svelte';
 	export let data;
 </script>
 
@@ -8,7 +9,7 @@
 	<meta name="description" content="{data.title} - Kurate FAQ" />
 </svelte:head>
 
-<div class="max-w-7xl mx-auto px-12">
+<Container>
 	<div class="py-12">
 		<a href="/"><h1 class="inline underline">All topics</h1></a>
 		→
@@ -16,4 +17,4 @@
 	</div>
 
 	{@html data.content}
-</div>
+</Container>
