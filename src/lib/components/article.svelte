@@ -8,7 +8,9 @@
 
 <div class={`article ${cls}`}>
 	<h3 class="article-title">
-		<Caret size={20} />
+		<span class="caret">
+			<Caret size={20} />
+		</span>
 		<slot name="title" />
 	</h3>
 	<div class="content">
@@ -46,7 +48,21 @@
 		display: none;
 	}
 
+	.caret {
+		display: inline-flex;
+	}
+
+	.closed .caret {
+		transform: rotate(0deg);
+		transition: all 0.2s;
+	}
+
 	.open .content {
 		display: block;
+	}
+
+	.open .caret {
+		transform: rotate(90deg);
+		transition: all 0.2s;
 	}
 </style>
