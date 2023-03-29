@@ -51,7 +51,6 @@
 	input {
 		border: none;
 		font-family: var(--font-serif);
-		font-size: 18px;
 		background-color: transparent;
 		width: 100%;
 		outline: none;

@@ -29,8 +29,8 @@
 	--spacing-96: 96px;
 	--padding-section: var(--spacing-48) var(--spacing-24);
 
-	--font-size-xl: 20px;
-	--font-size-lg: 18px;
+	--font-size-xl: 18px;
+	--font-size-lg: 16px;
 	--font-size-normal: 16px;
 	--font-size-sm: 14px;
 }
@@ -366,6 +366,15 @@ footer {
 
 	footer {
 		padding-block: var(--spacing-48);
+	}
+}
+
+@media (min-width: 414px) {
+	:root {
+		--font-size-xl: 20px;
+		--font-size-lg: 18px;
+		--font-size-normal: 16px;
+		--font-size-sm: 14px;
 	}
 }
 
