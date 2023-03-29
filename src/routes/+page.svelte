@@ -1,5 +1,7 @@
-<script>
+<script lang="ts">
 	/** @type {import('./$types').PageData} */
+	import Article from '$lib/components/article.svelte';
+	import TopicBlock from '$lib/components/topic-block.svelte';
 	export let data;
 </script>
 
@@ -8,16 +10,44 @@
 	<meta name="description" content="Kurate FAQ" />
 </svelte:head>
 
-<section class="max-w-7xl mx-auto px-12 pb-12">
-	<h1 class="font-semibold py-12">All topics</h1>
-
-	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-		{#each data.articles as article}
-			<div>
-				<h2 class="font-semibold text-lg">{article.title}</h2>
-				<p class="text-lg my-1.5">{article.summary}</p>
-				<a class="underline" href="/{article.slug}">Learn more</a>
-			</div>
+<div class="accordion">
+	<TopicBlock open>
+		{#each data.articles as article, i}
+			<Article href="/{article.slug}" class={i === 0 ? 'open' : 'closed'}>
+				<svelte:fragment slot="title">
+					{article.title}
+				</svelte:fragment>
+				<svelte:fragment slot="body">
+					{article.summary}
+				</svelte:fragment>
+			</Article>
 		{/each}
-	</div>
-</section>
+	</TopicBlock>
+	<TopicBlock>
+		{#each data.articles as article, i}
+			<Article href="/{article.slug}" class={i === 3 ? 'open' : 'closed'}>
+				<svelte:fragment slot="title">
+					{article.title}
+				</svelte:fragment>
+				<svelte:fragment slot="body">
+					{article.summary}
+				</svelte:fragment>
+			</Article>
+		{/each}
+	</TopicBlock>
+	<TopicBlock>
+		{#each data.articles as article, i}
+			<Article href="/{article.slug}" class={i === 2 ? 'open' : 'closed'}>
+				<svelte:fragment slot="title">
+					{article.title}
+				</svelte:fragment>
+				<svelte:fragment slot="body">
+					{article.summary}
+				</svelte:fragment>
+			</Article>
+		{/each}
+	</TopicBlock>
+</div>
+
+<style>
+</style>
