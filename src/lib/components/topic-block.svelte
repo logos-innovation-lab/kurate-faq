@@ -10,7 +10,7 @@
 <div class="topic-block">
 	<Container>
 		<h2 class="topic-title">
-			Topic Title
+			<slot name="title" />
 			{#if open}
 				<SubtractAlt size={20} />
 			{:else}

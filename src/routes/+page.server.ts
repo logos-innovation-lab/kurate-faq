@@ -1,36 +1,82 @@
 // @ts-expect-error https://github.com/sveltejs/kit/issues/1689
-import { readdir, readFile } from 'fs/promises';
+import { readdir, readFile, stat } from 'fs/promises';
+// @ts-expect-error https://github.com/sveltejs/kit/issues/1689
+import { join, relative, parse } from 'path';
 import { error } from '@sveltejs/kit';
 import matter from 'gray-matter';
 
-type Data = {
+export type Data = {
 	title: string;
-	summary: string;
+	order: number;
 };
 
-type Article = Data & {
+export type Article = Data & {
 	slug: string;
 };
 
-/** @type {import('./$types').PageLoad} */
-export async function load() {
+export type Content = {
+	data: Article;
+	content: string;
+	children?: Content[];
+};
+
+export type Articles = Content[];
+
+const getSlug = (basePath: string, path: string): string => {
+	const { dir, name } = parse(relative(basePath, path));
+	return name === 'index' ? dir : dir + '/' + name;
+};
+
+const readMarkdown = async (basePath: string, filePath: string): Promise<Content> => {
+	const { data, content } = matter(await readFile(filePath, 'utf-8'));
+	return {
+		data: {
+			...(data as Data),
+			slug: getSlug(basePath, filePath)
+		},
+		content: content.trim()
+	};
+};
+
+const readIndex = async (basePath: string, dirPath: string) => {
+	return await readMarkdown(basePath, join(dirPath, 'index.md'));
+};
+
+const readDirectory = async <DirectoryPath extends string | undefined>(
+	basePath: string,
+	directoryPath: DirectoryPath
+): Promise<DirectoryPath extends string ? Content : Articles> => {
+	const dirPath = directoryPath || basePath;
 	let files: string[];
 	try {
-		files = await readdir('./content');
+		files = await readdir(dirPath);
 	} catch (err) {
 		throw error(500, 'Internal server error');
 	}
 
-	const articles = await Promise.all(
-		files.map(async (name) => {
-			const file = await readFile(`./content/${name}`, 'utf-8');
-			const { data } = matter(file);
-			return {
-				...(data as Data),
-				slug: name.substring(0, name.length - 3)
-			} as Article;
-		})
-	);
+	const index = directoryPath ? await readIndex(basePath, dirPath) : {};
+	const promises = files.map(async (file) => {
+		if (file === 'index.md') {
+			return;
+		}
 
+		const path = join(dirPath, file);
+		const stats = await stat(path);
+
+		return stats.isDirectory() ? readDirectory(basePath, path) : readMarkdown(basePath, path);
+	});
+
+	let children = (await Promise.all(promises)).filter(Boolean) as Content[];
+	children = children.sort((a, b) => (a?.data?.order ?? Infinity) - (b?.data?.order ?? Infinity));
+
+	// TODO: Not sure why this doesn't work without "as"
+	return (directoryPath ? { ...index, children } : children) as DirectoryPath extends string
+		? Content
+		: Articles;
+};
+
+/** @type {import('./$types').PageLoad} */
+export async function load() {
+	const articles = await readDirectory('./content', undefined);
 	return { articles };
 }
