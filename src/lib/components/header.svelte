@@ -41,14 +41,14 @@
 			/* padding-inline: var(--spacing-48); */
 			transition: padding 0.2s;
 		}
-
-		&.scrolled {
-			padding-block: var(--spacing-12);
-			/* padding-inline: 12px; */
-			transition: box-shadow 0.2s, padding 0.2s;
-			box-shadow: 0 1px 5px 0 rgba(var(--color-body-text-rgb), 0.25);
-		}
 	}
+
+	header.root.scrolled {
+		padding-block: var(--spacing-12);
+		transition: box-shadow 0.2s, padding 0.2s;
+		box-shadow: 0 1px 5px 0 rgba(var(--color-body-text-rgb), 0.25);
+	}
+
 	.content {
 		display: flex;
 		flex-direction: row;

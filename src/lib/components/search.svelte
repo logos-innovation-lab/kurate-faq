@@ -38,11 +38,15 @@
 		flex-wrap: nowrap;
 		gap: var(--spacing-6);
 		margin-inline: -24px;
-		margin-bottom: var(--spacing-48);
+		margin-bottom: var(--spacing-24);
 		padding-inline: var(--spacing-24);
 		width: calc(100% + 48px);
 		position: relative;
 		transition: padding 0.2s, width 0.2s;
+
+		@media (min-width: 688px) {
+			margin-bottom: var(--spacing-48);
+		}
 	}
 	.search-icon {
 		flex-shrink: 0;

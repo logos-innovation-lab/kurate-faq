@@ -2,6 +2,10 @@
 	/** @type {import('./$types').PageData} */
 	import Article from '$lib/components/article.svelte';
 	import TopicBlock from '$lib/components/topic-block.svelte';
+	import Container from '$lib/components/container.svelte';
+	import Search from '$lib/components/search.svelte';
+	import Divider from '$lib/components/divider.svelte';
+	import Header from '$lib/components/header.svelte';
 	export let data;
 </script>
 
@@ -9,6 +13,12 @@
 	<title>Kurate FAQ</title>
 	<meta name="description" content="Kurate FAQ" />
 </svelte:head>
+
+<Container>
+	<Header title="FAQ" />
+	<Search />
+</Container>
+<Divider />
 
 <div class="accordion">
 	<TopicBlock open>

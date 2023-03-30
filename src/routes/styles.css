@@ -71,6 +71,7 @@ html {
 }
 
 body {
+	position: relative;
 	width: 100%;
 	min-height: 100dvh;
 	min-height: 100vh;
@@ -99,7 +100,7 @@ body {
 }
 
 p {
-	margin-bottom: var(--spacing-12);
+	margin-bottom: var(--spacing-6);
 }
 
 img,
