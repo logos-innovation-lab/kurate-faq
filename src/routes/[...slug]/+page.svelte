@@ -1,15 +1,17 @@
-<script>
+<script lang="ts">
 	/** @type {import('./$types').PageData} */
 	import Container from '$lib/components/container.svelte';
 	import Divider from '$lib/components/divider.svelte';
 	import Undo from '$lib/components/icons/undo.svelte';
 	import ArrowRight from '$lib/components/icons/arrow-right.svelte';
-	export let data;
+
+	import type { Data } from './+page.server';
+	export let data: Data;
 </script>
 
 <svelte:head>
-	<title>{data.title} - Kurate FAQ</title>
-	<meta name="description" content="{data.title} - Kurate FAQ" />
+	<title>{data.article.data.title} - Kurate FAQ</title>
+	<meta name="description" content="{data.article.data.title} - Kurate FAQ" />
 </svelte:head>
 
 <Container>
@@ -23,23 +25,25 @@
 
 <Container>
 	<div class="article">
-		{@html data.content}
+		{data.article.content}
 	</div>
 </Container>
-<div class="divider">
-	<Divider />
-</div>
-<Container>
-	<div class="next">
-		<div class="label">Next</div>
-		<div class="link">
-			<a href="/">
-				Link To Next Article
-				<ArrowRight size={12} />
-			</a>
+{#if data.next}
+	<div class="divider">
+		<Divider />
+	</div>
+	<Container>
+		<div class="next">
+			<div class="label">Next</div>
+			<div class="link">
+				<a href={'/' + data.next?.data.slug}>
+					{data.next?.data.title}
+					<ArrowRight size={12} />
+				</a>
+			</div>
 		</div>
-	</div>
-</Container>
+	</Container>
+{/if}
 
 <style>
 	:global(.article h1),
