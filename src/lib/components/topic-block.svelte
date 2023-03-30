@@ -3,13 +3,16 @@
 	import Divider from '$lib/components/divider.svelte';
 	import AddAlt from '$lib/components/icons/add-alt.svelte';
 	import SubtractAlt from '$lib/components/icons/subtract-alt.svelte';
+	import { createEventDispatcher } from 'svelte';
 
 	export let open: boolean | undefined = undefined;
+
+	const dispatch = createEventDispatcher();
 </script>
 
 <div class="topic-block">
 	<Container>
-		<h2 class="topic-title">
+		<h2 class="topic-title" on:click={() => dispatch('click')}>
 			<slot name="title" />
 			{#if open}
 				<SubtractAlt size={20} />

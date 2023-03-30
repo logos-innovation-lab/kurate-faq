@@ -8,6 +8,18 @@
 
 	import type { Articles } from './+page.server';
 	export let data: { articles: Articles };
+
+	let categoriesOpen = new Set([0]);
+	let articlesOpen = new Set(['0-0']);
+
+	const toggleSet = <Type>(set: Set<Type>, element: Type) => {
+		if (set.has(element)) {
+			set.delete(element);
+		} else {
+			set.add(element);
+		}
+		return set;
+	};
 </script>
 
 <svelte:head>
@@ -22,14 +34,21 @@
 <Divider />
 
 <div class="accordion">
-	{#each data.articles as category}
-		<TopicBlock open>
+	{#each data.articles as category, categoryId}
+		<TopicBlock
+			open={categoriesOpen.has(categoryId)}
+			on:click={() => (categoriesOpen = toggleSet(categoriesOpen, categoryId))}
+		>
 			<svelte:fragment slot="title">
 				{category.data.title}
 			</svelte:fragment>
 
-			{#each category?.children || [] as article, i}
-				<Article href="/{article.data.slug}" class={i === 0 ? 'open' : 'closed'}>
+			{#each category?.children || [] as article, articleId}
+				<Article
+					href="/{article.data.slug}"
+					class={articlesOpen.has(`${categoryId}-${articleId}`) ? 'open' : 'closed'}
+					on:click={() => (articlesOpen = toggleSet(articlesOpen, `${categoryId}-${articleId}`))}
+				>
 					<svelte:fragment slot="title">
 						{article.data.title}
 					</svelte:fragment>

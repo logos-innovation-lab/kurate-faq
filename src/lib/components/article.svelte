@@ -1,13 +1,16 @@
 <script lang="ts">
 	import ArticleLink from '$lib/components/article-link.svelte';
 	import Caret from '$lib/components/icons/caret-right.svelte';
+	import { createEventDispatcher } from 'svelte';
 	let cls: string | undefined = undefined;
 	export let href: string | undefined = undefined;
 	export { cls as class };
+
+	const dispatch = createEventDispatcher();
 </script>
 
 <div class={`article ${cls}`}>
-	<h3 class="article-title">
+	<h3 class="article-title" on:click={() => dispatch('click')}>
 		<span class="caret">
 			<Caret size={20} />
 		</span>
