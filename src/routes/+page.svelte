@@ -6,7 +6,7 @@
 	import Divider from '$lib/components/divider.svelte';
 	import Header from '$lib/components/header.svelte';
 
-	import type { Articles } from './+page.server';
+	import type { Articles } from '$lib/articles';
 	export let data: { articles: Articles };
 
 	let categoriesOpen = new Set([0]);
@@ -46,7 +46,7 @@
 			{#each category?.children || [] as article, articleId}
 				<Article
 					href="/{article.data.slug}"
-					class={articlesOpen.has(`${categoryId}-${articleId}`) ? 'open' : 'closed'}
+					open={articlesOpen.has(`${categoryId}-${articleId}`)}
 					on:click={() => (articlesOpen = toggleSet(articlesOpen, `${categoryId}-${articleId}`))}
 				>
 					<svelte:fragment slot="title">

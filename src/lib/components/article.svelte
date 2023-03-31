@@ -1,28 +1,31 @@
 <script lang="ts">
+	import { slide } from 'svelte/transition';
 	import ArticleLink from '$lib/components/article-link.svelte';
 	import Caret from '$lib/components/icons/caret-right.svelte';
 	import { createEventDispatcher } from 'svelte';
-	let cls: string | undefined = undefined;
+
 	export let href: string | undefined = undefined;
-	export { cls as class };
+	export let open: boolean | undefined = undefined;
 
 	const dispatch = createEventDispatcher();
 	const onClick = () => dispatch('click');
 </script>
 
-<div class={`article ${cls}`}>
+<div class={`article ${open && 'open'}`}>
 	<h3 class="article-title" on:click={onClick} on:keyup={onClick}>
 		<span class="caret">
 			<Caret size={20} />
 		</span>
 		<slot name="title" />
 	</h3>
-	<div class="content">
-		<div class="article-body">
-			<slot name="body" />
+	{#if open}
+		<div transition:slide|local class="content">
+			<div class="article-body">
+				<slot name="body" />
+			</div>
+			<ArticleLink {href} />
 		</div>
-		<ArticleLink {href} />
-	</div>
+	{/if}
 </div>
 
 <style lang="css">
@@ -47,24 +50,12 @@
 
 	.content {
 		padding-bottom: var(--spacing-36);
-		display: flex;
-	}
-
-	.closed .content {
-		display: none;
 	}
 
 	.caret {
 		display: inline-flex;
-	}
-
-	.closed .caret {
 		transform: rotate(0deg);
 		transition: all 0.2s;
-	}
-
-	.open .content {
-		display: block;
 	}
 
 	.open .caret {

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { slide } from 'svelte/transition';
 	import Container from '$lib/components/container.svelte';
 	import Divider from '$lib/components/divider.svelte';
 	import AddAlt from '$lib/components/icons/add-alt.svelte';
@@ -21,9 +22,11 @@
 				<AddAlt size={20} />
 			{/if}
 		</h2>
-		<div class={`articles ${open ? 'open' : ''}`}>
-			<slot />
-		</div>
+		{#if open}
+			<div transition:slide>
+				<slot />
+			</div>
+		{/if}
 	</Container>
 </div>
 <Divider />
@@ -36,13 +39,5 @@
 		padding-block: var(--spacing-24);
 		cursor: pointer;
 		user-select: none;
-	}
-
-	.articles {
-		display: none;
-	}
-
-	.articles.open {
-		display: block;
 	}
 </style>
