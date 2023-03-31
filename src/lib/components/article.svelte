@@ -10,11 +10,15 @@
 </script>
 
 <div class={`article ${cls}`}>
-	<h3 class="article-title" on:click={() => dispatch('click')}>
-		<span class="caret">
-			<Caret size={20} />
-		</span>
-		<slot name="title" />
+	<h3 class="article-title">
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y-missing-attribute -->
+		<a on:click={() => dispatch('click')}>
+			<span class="caret">
+				<Caret size={20} />
+			</span>
+			<slot name="title" />
+		</a>
 	</h3>
 	<div class="content">
 		<div class="article-body">
@@ -25,13 +29,18 @@
 </div>
 
 <style lang="css">
-	.article-title {
+	.article-title a {
 		display: flex;
 		justify-content: flex-start;
 		gap: var(--spacing-6);
 		align-items: center;
 		padding-top: var(--spacing-12);
 		padding-bottom: var(--spacing-12);
+		text-decoration: none;
+	}
+
+	.article-title:hover {
+		cursor: pointer;
 	}
 
 	.article-body {
