@@ -8,11 +8,12 @@
 	export let open: boolean | undefined = undefined;
 
 	const dispatch = createEventDispatcher();
+	const onClick = () => dispatch('click');
 </script>
 
 <div class="topic-block">
 	<Container>
-		<h2 class="topic-title" on:click={() => dispatch('click')}>
+		<h2 class="topic-title" on:click={onClick} on:keyup={onClick}>
 			<slot name="title" />
 			{#if open}
 				<SubtractAlt size={20} />
@@ -33,6 +34,7 @@
 		justify-content: space-between;
 		align-items: center;
 		padding-block: var(--spacing-24);
+		cursor: pointer;
 	}
 
 	.articles {

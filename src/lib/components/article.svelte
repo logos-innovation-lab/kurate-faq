@@ -7,10 +7,11 @@
 	export { cls as class };
 
 	const dispatch = createEventDispatcher();
+	const onClick = () => dispatch('click');
 </script>
 
 <div class={`article ${cls}`}>
-	<h3 class="article-title" on:click={() => dispatch('click')}>
+	<h3 class="article-title" on:click={onClick} on:keyup={onClick}>
 		<span class="caret">
 			<Caret size={20} />
 		</span>
@@ -32,6 +33,7 @@
 		align-items: center;
 		padding-top: var(--spacing-12);
 		padding-bottom: var(--spacing-12);
+		cursor: pointer;
 	}
 
 	.article-body {
