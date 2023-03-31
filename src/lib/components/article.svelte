@@ -34,6 +34,7 @@
 		padding-top: var(--spacing-12);
 		padding-bottom: var(--spacing-12);
 		cursor: pointer;
+		user-select: none;
 	}
 
 	.article-body {

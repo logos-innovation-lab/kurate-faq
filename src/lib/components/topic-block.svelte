@@ -35,6 +35,7 @@
 		align-items: center;
 		padding-block: var(--spacing-24);
 		cursor: pointer;
+		user-select: none;
 	}
 
 	.articles {
