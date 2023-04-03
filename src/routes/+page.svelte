@@ -53,7 +53,7 @@
 						{article.data.title}
 					</svelte:fragment>
 					<svelte:fragment slot="body">
-						{article.content}
+						{@html article.content}
 					</svelte:fragment>
 				</Article>
 			{/each}

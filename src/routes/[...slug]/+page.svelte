@@ -25,7 +25,7 @@
 
 <Container>
 	<div class="article">
-		{data.article.content}
+		{@html data.article.content}
 	</div>
 </Container>
 {#if data.next}
