@@ -2,7 +2,7 @@
 	import Launch from '$lib/components/icons/launch.svelte';
 
 	export let href: string | undefined = undefined;
-	export let target: string | undefined = '_self';
+	export let target: string | undefined = '_blank';
 </script>
 
 <a class="launch" {href} {target}>

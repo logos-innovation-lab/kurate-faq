@@ -4,7 +4,7 @@ import { readdir, readFile, stat } from 'fs/promises';
 import { join, relative, parse } from 'path';
 import { error } from '@sveltejs/kit';
 import matter from 'gray-matter';
-import { marked } from 'marked';
+import { markdown } from './markdown';
 
 export type Data = {
 	title: string;
@@ -35,7 +35,7 @@ const readMarkdown = async (basePath: string, filePath: string): Promise<Content
 			...(data as Data),
 			slug: getSlug(basePath, filePath)
 		},
-		content: marked(content.trim())
+		content: markdown(content)
 	};
 };
 
