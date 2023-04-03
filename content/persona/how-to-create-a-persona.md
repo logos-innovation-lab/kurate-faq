@@ -1,5 +1,5 @@
 ---
-title: 'WHow To Create a Persona'
+title: 'How To Create a Persona'
 order: 4
 ---
 
