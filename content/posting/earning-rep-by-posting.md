@@ -1,5 +1,5 @@
 ---
-title: 'earning REP by Posting?'
+title: 'Earning REP by Posting?'
 order: 5
 ---
 
