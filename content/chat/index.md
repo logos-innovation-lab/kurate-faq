@@ -1,4 +1,4 @@
 ---
-title: 'Details'
+title: 'Chat'
 order: 5
 ---
