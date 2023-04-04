@@ -4,7 +4,7 @@
 
 <hr class={visible} />
 
-<style>
+<style lang="postcss">
 	hr {
 		border: none;
 		width: 100%;
@@ -16,6 +16,7 @@
 				display: none;
 			}
 		}
+
 		&.mobile {
 			@media (min-width: 688px) {
 				display: none;

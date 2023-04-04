@@ -25,7 +25,7 @@
 	{/if}
 </button>
 
-<style>
+<style lang="postcss">
 	.root {
 		padding-left: var(--spacing-12);
 		padding-right: var(--spacing-12);

@@ -30,7 +30,7 @@
 	{/if}
 </div>
 
-<style>
+<style lang="postcss">
 	.search-field {
 		display: flex;
 		align-items: center;
@@ -48,6 +48,7 @@
 			margin-bottom: var(--spacing-48);
 		}
 	}
+
 	.search-icon {
 		flex-shrink: 0;
 	}
