@@ -4,6 +4,7 @@
 	import Divider from '$lib/components/divider.svelte';
 	import Undo from '$lib/components/icons/undo.svelte';
 	import ArrowRight from '$lib/components/icons/arrow-right.svelte';
+	import Markdown from '$lib/components/markdown.svelte';
 
 	import type { Data } from './+page.server';
 	export let data: Data;
@@ -24,9 +25,9 @@
 </Container>
 
 <Container>
-	<div class="article">
+	<Markdown class="article">
 		{@html data.article.content}
-	</div>
+	</Markdown>
 </Container>
 {#if data.next}
 	<div class="divider">
@@ -99,5 +100,9 @@
 		font-size: var(--font-size-sm);
 		align-items: center;
 		text-decoration: none;
+	}
+
+	.pagetitle a:hover {
+		text-decoration: underline;
 	}
 </style>

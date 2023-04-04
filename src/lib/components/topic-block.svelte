@@ -4,6 +4,7 @@
 	import Divider from '$lib/components/divider.svelte';
 	import AddAlt from '$lib/components/icons/add-alt.svelte';
 	import SubtractAlt from '$lib/components/icons/subtract-alt.svelte';
+	import Markdown from './markdown.svelte';
 	import { createEventDispatcher } from 'svelte';
 
 	export let open: boolean | undefined = undefined;
@@ -24,7 +25,9 @@
 		</h2>
 		{#if open}
 			<div transition:slide>
-				<slot />
+				<Markdown>
+					<slot />
+				</Markdown>
 			</div>
 		{/if}
 	</Container>

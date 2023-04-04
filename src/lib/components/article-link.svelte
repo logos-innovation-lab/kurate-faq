@@ -22,4 +22,8 @@
 		line-height: 1;
 		font-size: var(--font-size-sm);
 	}
+
+	.launch:hover {
+		text-decoration: underline;
+	}
 </style>

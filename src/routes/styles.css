@@ -414,12 +414,3 @@ footer {
 		}
 	}
 }
-
-strong {
-	font-weight: bold;
-}
-
-ol,
-ul {
-	list-style-position: inside;
-}
