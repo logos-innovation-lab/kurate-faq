@@ -25,6 +25,7 @@
 </Container>
 
 <Container>
+	<h1>{data.article.data.title}</h1>
 	<Markdown class="article">
 		{@html data.article.content}
 	</Markdown>
@@ -47,16 +48,8 @@
 {/if}
 
 <style>
-	:global(.article h1),
-	:global(.article h2),
-	:global(.article h3) {
+	h1 {
 		margin-bottom: var(--spacing-24);
-		font-weight: var(--font-weight-sb);
-	}
-
-	:global(ul) {
-		margin-left: var(--spacing-48);
-		margin-bottom: var(--spacing-12);
 	}
 
 	.divider {
