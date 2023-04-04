@@ -19,9 +19,14 @@
 			margin-left: calc(20px + var(--spacing-6));
 		}
 
-		:global(li):before {
+		:global(ul li):before {
 			content: '';
 			margin-left: calc(-1 * var(--spacing-8));
+		}
+
+		:global(ol li):before {
+			content: '';
+			margin-left: 4px;
 		}
 
 		:global(p) {
