@@ -111,11 +111,6 @@ video {
 	border-style: none;
 }
 
-/* svg {
-	width: 20px;
-	aspect-ratio: 1;
-} */
-
 hr {
 	border: none;
 	width: 100%;
@@ -262,97 +257,21 @@ a.button {
 	}
 }
 
-section,
-footer {
+section {
 	padding: var(--padding-section);
 	display: flex;
 	gap: var(--spacing-48);
 	flex-direction: column;
-
-	.section-header {
-		margin-bottom: 48px;
-	}
-
-	&#trynow {
-		.buttons {
-			margin-top: 36px;
-		}
-	}
-}
-
-.cols {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	gap: var(--spacing-48);
-	max-width: 450px;
-	margin-inline: auto;
-}
-
-.col {
-	display: flex;
-	flex-direction: column;
-	gap: var(--spacing-12);
-	flex-basis: 100%;
-	max-width: 450px;
-
-	.buttons {
-		justify-content: flex-start;
-	}
-}
-
-.subtitle {
-	font-size: 20px;
-}
-
-.intro {
-	max-width: 750px;
-
-	span {
-		font-family: var(--font-serif);
-		font-style: italic;
-	}
 }
 
 footer {
 	background-color: var(--color-body-text);
 	color: var(--color-body-bg);
 	font-weight: var(--font-weight-thin);
-
-	.buttons {
-		margin-top: var(--spacing-12);
-		margin-bottom: var(--spacing-48);
-
-		.button {
-			color: var(--color-body-bg);
-			font-size: var(--font-size-sm);
-
-			&.secondary {
-				color: var(--color-body-bg);
-				border-color: var(--grey-400);
-			}
-		}
-	}
+	padding-block: var(--spacing-24);
 
 	.copyright {
 		color: var(--grey-400);
-	}
-
-	svg {
-		fill: var(--color-body-bg);
-	}
-}
-
-footer {
-	text-align: center;
-
-	.col {
-		max-width: 450px;
-		margin-inline: auto;
-
-		.buttons {
-			justify-content: center;
-		}
 	}
 }
 
@@ -364,10 +283,6 @@ footer {
 	.subtitle {
 		font-size: 24px;
 	}
-
-	footer {
-		padding-block: var(--spacing-48);
-	}
 }
 
 @media (min-width: 414px) {
@@ -377,40 +292,8 @@ footer {
 		--font-size-normal: 16px;
 		--font-size-sm: 14px;
 	}
-}
-
-@media (min-width: 668px) {
-	/* h1:not(:empty),
-	.h1:not(:empty) {
-		font-size: var(--font-size-xl);
-	}
-
-	h2:not(:empty),
-	.h2:not(:empty) {
-		font-size: var(--font-size-lg);
-		margin-bottom: var(--spacing-12);
-	}
-
-	h3:not(:empty),
-	.h3:not(:empty) {
-		font-size: var(--font-size-normal);
-	} */
 
 	footer {
-		padding: var(--spacing-48);
-	}
-}
-
-@media (min-width: 1242px) {
-	footer {
-		text-align: left;
-
-		.col {
-			margin-left: 0;
-
-			.buttons {
-				justify-content: flex-start;
-			}
-		}
+		padding-block: var(--spacing-48);
 	}
 }
